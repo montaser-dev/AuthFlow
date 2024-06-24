@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import PropTypes from 'prop-types';
+
 
 const StateContext = createContext({
     user: null,
@@ -11,7 +13,7 @@ export const ContextProvider = ({children})=>{
     const [user, setUser] = useState({
         name: 'Abdallah'
     });
-    const [token, _setToken] = useState(123);
+    const [token, _setToken] = useState(null);
 
     const setToken = (token) =>{
         _setToken(token)
@@ -33,5 +35,10 @@ export const ContextProvider = ({children})=>{
         </StateContext.Provider>
     )
 }
+
+ContextProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
 
 export const useStateContext = () => useContext(StateContext)
